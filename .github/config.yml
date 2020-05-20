@@ -11,6 +11,6 @@ newPRWelcomeComment: |
 # Comment to be posted on PR merges from first time contributors in your repository
 firstPRMergeComment: |
   Congrats on merging your first pull request! 🎉🎉🎉
-  We here are proud of you and your accomplishment 🏆.
+  We are proud of you and your accomplishment 🏆.
   
   ![thanks-for-pr-image](https://raw.githubusercontent.com/wiki/kai-tub/external-repo-sync-action/community/thanks_for_pr.jpg)
