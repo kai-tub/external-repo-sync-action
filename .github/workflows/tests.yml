@@ -187,9 +187,5 @@ jobs:
           source-directory: "./tmp/"
           branch: "test_push_to_branch"
           include-patterns: "*.action.tmp"
-  malicious_code:
-    name: This could be code deleting all my repos
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This command could delete everything"
+
 
