@@ -1,8 +1,16 @@
 name: tests
 on:
   push:
+    paths:
+      - "**.fish"
+      - ".github/workflows/tests.yml"
+      - "action.yml"
     branches: [ master ]
   pull_request:
+    paths:
+      - "**.fish"
+      - ".github/workflows/tests.yml"
+      - "action.yml"
     branches: [ master ]
 
 env:
@@ -189,3 +197,4 @@ jobs:
           source-directory: "./tmp/"
           branch: "test_push_to_branch"
           include-patterns: "*.action.tmp"
+
