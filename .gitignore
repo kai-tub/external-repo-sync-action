@@ -1,0 +1,9 @@
+.devcontainer/
+example_a/
+external-repo-sync-action.wiki/
+todo
+.actrc
+tmp/
+venv/
+.vscode/
+.env

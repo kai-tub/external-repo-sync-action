@@ -1,0 +1,50 @@
+name: "Upload files/binaries recursively to different GitHub repo or wiki."
+description: "Upload files/binaries recursively to different GitHub repositories or wikis. It wraps around the rsync command."
+
+inputs:
+    source-directory:
+        description: "Source directory"
+        required: true
+    include-patterns:
+        description: "Patterns which will be exclusively synced. Use spaces in quotes to separate multiple patterns."
+    exclude-patterns:
+        description: "Patterns which will be exluded. Use spaces in quotes to separate multiple patterns."
+        required: false
+    repository:
+        description: "Repo"
+        required: false
+    user:
+        description: "Set user name for action bot"
+        required: false
+    mail:
+        description: "Set email address for action bot"
+        required: false
+    commit-message:
+        description: "Commit message for action bot"
+        required: false
+    dry-run:
+        description: "If non-empty don't push to repo. Show the new synced state of the pulled repo at the end instead."
+        required: false
+    branch:
+        description: "Set which branch should be checked out. It will never create a new branch! Default is master"
+        required: false
+outputs:
+    sync_result:
+        description: "Folder structure of defined repo after syncing. Mainly used for testing."
+
+runs:
+    using: "docker"
+    image: "Dockerfile"
+    args:
+        - --source-dir=${{ inputs.source-directory }}
+        - --include-patterns=${{ inputs.include-patterns }}
+        - --exclude-patterns=${{ inputs.exclude-patterns }}
+        - --repository=${{ inputs.repository }}
+        - --user=${{ inputs.user }}
+        - --mail=${{ inputs.mail }}
+        - --commit-message=${{ inputs.commit-message }}
+        - --dry-run=${{ inputs.dry-run }}
+        - --branch=${{ inputs.branch }}
+branding:
+    icon: "chevrons-up"
+    color: "black"
