@@ -197,3 +197,8 @@ jobs:
           source-directory: "./tmp/"
           branch: "test_push_to_branch"
           include-patterns: "*.action.tmp"
+  dummy_check:
+    name: Testing which yaml is run
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR yml is run"
