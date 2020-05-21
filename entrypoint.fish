@@ -53,7 +53,6 @@ The variable GitHub access token called \$GH_ACCESS_TOKEN has to be set!
   --commit-message      Set the commit-message for the push. Default is `Action Bot pushing.`
   --branch              Set which branch should be checkout out. Default is master
   --help                Display this help and exit
-
 "
 end
 
