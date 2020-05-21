@@ -23,8 +23,6 @@ jobs:
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Create files to sync
         run: |
           mkdir docs/
@@ -52,8 +50,6 @@ jobs:
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Create files to sync
         run: |
           mkdir docs/
@@ -83,8 +79,6 @@ jobs:
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Create files to sync
         run: |
           mkdir docs/
@@ -149,8 +143,6 @@ jobs:
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Create files to sync
         run: |
           mkdir docs/
@@ -183,8 +175,6 @@ jobs:
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Create tmp file
         run: |
           mkdir -p tmp/
@@ -197,4 +187,3 @@ jobs:
           source-directory: "./tmp/"
           branch: "test_push_to_branch"
           include-patterns: "*.action.tmp"
-
