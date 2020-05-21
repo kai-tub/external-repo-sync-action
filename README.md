@@ -347,6 +347,7 @@ Please see the [contribution guidelines](CONTRIBUTING.md) for more information.
 
 As always, PRs are welcome. :)
 
+
 # Contact
 If you have any comments, issues, or suggestions, please
 open an issue on GitHub. 
