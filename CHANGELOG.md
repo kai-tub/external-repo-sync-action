@@ -1,3 +1,15 @@
+# v1.0.3 (Thu May 21 2020)
+
+#### 🐛 Bug Fix
+
+- Testing full pipeline [#10](https://github.com/kai-tub/external-repo-sync-action/pull/10) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
 # v1.0.2 (Thu May 21 2020)
 
 #### 🐛 Bug Fix
