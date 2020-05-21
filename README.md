@@ -334,8 +334,7 @@ cannot trigger workflows that use your GitHub access token.
 See [GitHub help](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
 
 Consequently, it is not straightforward to automatically push to the other repo or the wiki when merging branches from forks.
-I suggest triggering on deploy events, adding own commits
-to a PR or, for a very hacky solution,
+I suggest triggering on deploy events to a PR or, for a very hacky solution,
 on a *manual* trigger, described in 
 [dev.to](https://dev.to/s_abderemane/manual-trigger-with-github-actions-279e)
 
