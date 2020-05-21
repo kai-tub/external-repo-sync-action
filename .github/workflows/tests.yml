@@ -187,5 +187,3 @@ jobs:
           source-directory: "./tmp/"
           branch: "test_push_to_branch"
           include-patterns: "*.action.tmp"
-
-
