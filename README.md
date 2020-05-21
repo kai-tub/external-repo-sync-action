@@ -162,7 +162,7 @@ folder to the wiki of the current repository:
             mkdir docs/
             touch docs/hello.md
         - name: Sync with local action
-          uses: ./
+          uses: kai-tub/external-repo-sync-action@v1
           with:
             source-directory: "./docs"
           env:
@@ -204,7 +204,7 @@ And the following configuration:
 
   # Checkout repo and add files if necessary
   - name: Sync with include
-    uses: ./
+    uses: kai-tub/external-repo-sync-action@v1
     with:
       source-directory: "./docs"
       include-patterns: "*.md *.jpg"
@@ -250,7 +250,7 @@ And the following configuration:
 ```yml
   # Checkout repo and add files if necessary
   - name: Sync with exclude
-    uses: ./
+    uses: kai-tub/external-repo-sync-action@v1
     with:
       source-directory: "./docs"
       exclude-patterns: "*.md *.jpg"
@@ -298,7 +298,7 @@ And the following configuration:
 ```yml
   # Checkout repo and add files if necessary
   - name: Sync with include and exclude
-    uses: ./
+    uses: kai-tub/external-repo-sync-action@v1
     with:
       source-directory: "./docs"
       include-patterns: "*.pdf *.png"
