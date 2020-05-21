@@ -2,6 +2,19 @@
 
 #### 🐛 Bug Fix
 
+- Setting default input to false [#7](https://github.com/kai-tub/external-repo-sync-action/pull/7) ([@kai-tub](https://github.com/kai-tub))
+- Testing auto-release once again [#6](https://github.com/kai-tub/external-repo-sync-action/pull/6) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
+# (Thu May 21 2020)
+
+#### 🐛 Bug Fix
+
 - Testing auto-release once again [#6](https://github.com/kai-tub/external-repo-sync-action/pull/6) ([@kai-tub](https://github.com/kai-tub))
 
 #### Authors: 1
