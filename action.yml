@@ -1,4 +1,4 @@
-name: "Upload files/binaries recursively to different GitHub repo or wiki."
+name: "Upload files/binaries recursively to different GitHub repo or wiki"
 description: "Upload files/binaries recursively to different GitHub repositories or wikis. It wraps around the rsync command."
 
 inputs:
