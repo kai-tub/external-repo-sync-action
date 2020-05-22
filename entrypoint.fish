@@ -233,7 +233,7 @@ end
 
 function rsync_wrapper -a "exclude_option" "include_option" "source_dir" "target_dir" "delete_missing"
     set rsync_cmd "rsync -av --prune-empty-dirs"
-    if -n "$delete_missing"
+    if test -n "$delete_missing"
         set rsync_cmd "$rsync_cmd"" --delete"
     end
     set rsync_cmd "$rsync_cmd""$exclude_option""$include_option"" $source_dir"" $target_dir"
