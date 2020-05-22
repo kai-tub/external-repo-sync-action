@@ -22,10 +22,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Create tmp file
         run: |
+          rm -f *.action.tmp  # delete from previous run
           mkdir -p tmp/
-          rm -f tmp/*.action.tmp
           out=$(mktemp tempfileXXXXXXXX --suffix=.action.tmp --tmpdir=./tmp/)
+          out=$(basename "$out")
           echo "::set-output name=tempfile::$out"
+        # Parse basename
         id: tempfile
       - name: Push with local action
         uses: ./
