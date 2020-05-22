@@ -6,8 +6,8 @@ on:
       - ".github/workflows/verification_tests.yml"
       - "action.yml"
     branches: [ master ]
-  # TODO: remove lower line, after checking if it still works
   pull_request:
+    # TODO only trigger if I modify it
     branches: [ master ]
 
 env:

@@ -52,6 +52,8 @@ The variable GitHub access token called \$GH_ACCESS_TOKEN has to be set!
   --mail                Set the email address for git. Defaults to current user @users.noreply.github.com
   --commit-message      Set the commit-message for the push. Default is `Action Bot pushing.`
   --branch              Set which branch should be checkout out. Default is master
+  --dry-run             Script will run in empty folder and not touch target repo. Default is false
+  --delete-missing      Delete all files in the repo that are not present in source directory. Default is false
   --help                Display this help and exit
 "
 end
