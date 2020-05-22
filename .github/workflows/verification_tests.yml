@@ -20,7 +20,7 @@ jobs:
     # Problem, if I edit the PR from a user, the Secret still can't be accessed
     # I need the information not of the actor and owner, but of the PR setter.
     # if: github.actor == github.repository_owner
-    if: github.event.pull_request.author_association == OWNER
+    if: "github.event.pull_request.author_association == OWNER"
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
