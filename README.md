@@ -3,19 +3,21 @@
     External repository sync action
   </p>
 </h1>
-<p align="center">
+<div align="center">
   This repository provides a GitHub action to push files/binaries 
   to <strong>external repositories</strong>.
   Per default, the action uses the wiki of the current repo, but you can specify other repos as well.
-</p>
 
-
-[![Release](https://badgen.net/github/tag/kai-tub/external-repo-sync-action/?label=Newest%20release)](https://github.com/kai-tub/external-repo-sync-action/releases) 
+[![Release](https://badgen.net/github/release/kai-tub/external-repo-sync-action/)](https://github.com/kai-tub/external-repo-sync-action/releases)
 [![GitHub license](https://badgen.net/github/license/kai-tub/external-repo-sync-action/)](https://github.com/kai-tub/external-repo-sync-action/blob/master/LICENSE)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg?color=blue)](CODE_OF_CONDUCT.md)
-
-![tests](https://github.com/kai-tub/external-repo-sync-action/workflows/tests/badge.svg)
 [![Auto Release](https://img.shields.io/badge/release-auto.svg?colorA=888888&colorB=9B065A&label=auto&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACzElEQVR4AYXBW2iVBQAA4O+/nLlLO9NM7JSXasko2ASZMaKyhRKEDH2ohxHVWy6EiIiiLOgiZG9CtdgG0VNQoJEXRogVgZYylI1skiKVITPTTtnv3M7+v8UvnG3M+r7APLIRxStn69qzqeBBrMYyBDiL4SD0VeFmRwtrkrI5IjP0F7rjzrSjvbTqwubiLZffySrhRrSghBJa8EBYY0NyLJt8bDBOtzbEY72TldQ1kRm6otana8JK3/kzN/3V/NBPU6HsNnNlZAz/ukOalb0RBJKeQnykd7LiX5Fp/YXuQlfUuhXbg8Di5GL9jbXFq/tLa86PpxPhAPrwCYaiorS8L/uuPJh1hZFbcR8mewrx0d7JShr3F7pNW4vX0GRakKWVk7taDq7uPvFWw8YkMcPVb+vfvfRZ1i7zqFwjtmFouL72y6C/0L0Ie3GvaQXRyYVB3YZNE32/+A/D9bVLcRB3yw3hkRCdaDUtFl6Ykr20aaLvKoqIXUdbMj6GFzAmdxfWx9iIRrkDr1f27cFONGMUo/gRI/jNbIMYxJOoR1cY0OGaVPb5z9mlKbyJP/EsdmIXvsFmM7Ql42nEblX3xI1BbYbTkXCqRnxUbgzPo4T7sQBNeBG7zbAiDI8nWfZDhQWYCG4PFr+HMBQ6l5VPJybeRyJXwsdYJ/cRnlJV0yB4ZlUYtFQIkMZnst8fRrPcKezHCblz2IInMIkPzbbyb9mW42nWInc2xmE0y61AJ06oGsXL5rcOK1UdCbEXiVwNXsEy/6+EbaiVG8eeEAfxvaoSBnCH61uOD7BS1Ul8ESHBKWxCrdyd6EYNKihgEVrwOAbQruoytuBYIFfAc3gVN6iawhjKyNCEpYhVJXgbOzARyaU4hCtYizq5EI1YgiUoIlT1B7ZjByqmRWYbwtdYjoWoN7+LOIQefIqKawLzK6ID69GGpQgwhhEcwGGUzfEPAiPqsCXadFsAAAAASUVORK5CYII=)](https://github.com/intuit/auto)
+
+![Release](https://github.com/kai-tub/external-repo-sync-action/workflows/Release/badge.svg)
+![Update major tag](https://github.com/kai-tub/external-repo-sync-action/workflows/Update%20major%20tag/badge.svg)
+![Unit Tests](https://github.com/kai-tub/external-repo-sync-action/workflows/Unit%20Tests/badge.svg)
+![Verification Tests](https://github.com/kai-tub/external-repo-sync-action/workflows/Verification%20Tests/badge.svg)
+</div>
 
 - [When to use this action](#when-to-use-this-action)
   - [Automatically pushing to the repo's wiki](#automatically-pushing-to-the-repos-wiki)
