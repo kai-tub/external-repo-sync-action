@@ -15,58 +15,26 @@ If you find a typo in the documentation, do not hesitate to submit a GitHub pull
    go ahead, and implement it.
 
 ## PR guide
-If you modified the code or added tests, a couple of
-steps must be done before a PR can be merged.
-As the action requires a secret token, the tests *will not*
-work without any extra steps. The tests need access to
-the wiki of the forked repository. Do the
-same steps described in the Set-Up section of the 
-[README.md](README.md). The tests are more similar to
-*verification* steps instead of unit tests.
-They are designed to check the full functionality,
-from checking out to pushing to a different branch.
+If you modified the code or added tests, 
+the tests have to pass before a PR can be merged.
 
-After adding a secret called `GH_ACCESS_TOKEN`
-(for the tests this name *has* to be used!) and activating/pushing
-to the wiki, the wiki has to be checkout out. 
-Now two *empty* branches have to be
-create; one called `tests` and one called `test_push_to_branch`.
+If you are not familiar with creating a Pull Request, 
+here are some guides:
 
-These steps could be executed with:
-```bash
-   git clone https://github.com/<USERNAME>/external-repo-sync-action.wiki.git
-   cd external-repo-sync-action.wiki/
-   git checkout -b tests
-   rm -rf * # Make sure branche is empty
-   git add . && git commit -m "Added test branch"
-   git push -u origin tests
-   # repeat for test_push_to_branch branch
-   git checkout -b test_push_to_branch
-   rm -rf *
-   git add . && git commit -m "Added push test branch"
-   git push -u origin test_push_to_branch
-```
-
-After doing all of the steps described above,
-the tests will *fail* on the PR site. This is
-due to how GitHub Actions are triggered and what
-environment variables they can access. The
-PR commit will try to get the secret from the
-original repository, which is *hidden* for obvious
-security risks. *But* the tests will run in
-your forked repository. The status of these tests
-is used to decide if the PR can be merged or not.
-
-These steps are an inconvenience, but with this
-approach, the functionality can be verified for all users.
-(May change in the future)
-
-If you are not familiar with creating a Pull Request, here are some guides:
 - http://stackoverflow.com/questions/14680711/how-to-do-a-github-pull-request
 - https://help.github.com/articles/creating-a-pull-request/
 
-Please also read the [Code Of Conduct](./CODE_OF_CONDUCT.md)
+After passing the unit tests the verification tests have to pass.
+As the secrets of the PR initiator is used, only collaborators
+and the repository owner can trigger the verification step
+automatically. The secret is needed to actually run the complete
+action on the own repositories wiki. This will ensure that all
+steps of the action are fully functional. 
+
+Your PR code will be downloaded and verified manually before
+merging.Please also read the [Code Of Conduct](./CODE_OF_CONDUCT.md)
 before opening a PR.
+
 After merging your PR you will be added to the list of contributors.
 
 Thanks for your hard work and for sticking around until the end of the guide! :tada::tada::tada:

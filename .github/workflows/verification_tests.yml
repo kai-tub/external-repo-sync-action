@@ -1,0 +1,49 @@
+name: Verification Tests
+on:
+  push:
+    paths:
+      - "**.fish"
+      - ".github/workflows/verification_tests.yml"
+      - "action.yml"
+    branches: [ master ]
+  pull_request:
+    paths:
+      - "**.fish"
+      - ".github/workflows/verification_tests.yml"
+      - "action.yml"
+    branches: [ master ]
+
+env:
+  GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+
+jobs:
+  test_full_pipeline_on_different_branch:
+    name: Test push to own wiki on tmp branch
+    runs-on: ubuntu-latest
+    # Always run on master push to verifiy everything works and
+    # only run on PR if the Owner is issuing a PR, since he has
+    # access to the Secrets!
+    if: github.event_name == 'push' || github.event.pull_request.author_association == 'OWNER'
+    steps:
+      - name: Checkout current version
+        uses: actions/checkout@v2
+      - name: Create tmp file
+        run: |
+          mkdir -p tmp/
+          out=$(mktemp tempfileXXXXXXXX --suffix=.action.tmp --tmpdir=./tmp/)
+          out=$(basename "$out")
+          echo "::set-output name=tempfile::$out"
+        id: tempfile
+      - name: Push with local action
+        uses: ./
+        with:
+          source-directory: "./tmp/"
+          branch: "test_push_to_branch"
+          include-patterns: "*.action.tmp"
+          delete-missing: "true"
+        id: test_full_pipeline_on_different_branch
+      - name: Test output
+        run: |
+          sol="./${{ steps.tempfile.outputs.tempfile }}"
+          res="${{ steps.test_full_pipeline_on_different_branch.outputs.sync_result }}"
+          [ "$sol" = "$res" ] || { echo "::error::Failed default settings test"; exit 1; }

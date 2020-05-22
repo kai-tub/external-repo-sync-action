@@ -1,3 +1,5 @@
+name: Update major tag
+
 on:
   release:
     types: [ published, edited ]

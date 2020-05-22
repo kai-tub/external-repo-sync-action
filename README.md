@@ -121,13 +121,20 @@ The remaining arguments of the script are the following:
 By default, the wiki of the current repository is used.
 - `user`: Set the user name configuration for the push. 
 The default name is 
-the triggering user (Optional)
+the triggering user
 - `mail`: Set the email configuration for the push. 
-Default mail is GitHub user `@users.noreply.github.com` (Optional)
+Default mail is GitHub user `@users.noreply.github.com`
 - `commit-message`: Set the commit-message for the push. 
 Default is `Action Bot is pushing`.
 - `branch`: Set which branch should be checked out. 
 It never creates a new one. Default is master.
+- `dry-run`: Doesn't touch repository. The command will run
+in an empty folder. This shows what files will would be synced
+with the repo without touching it. Default is false.
+- `delete-missing`: Delete all files in the repo
+that are not present in the source-directory. Please
+be careful when using this option! Use `dry-run` to see
+which files would be synced first. Default is false
 
 Note: All commands and patterns are case-sensitive!
 To include `*.JPG *.jpg`, please specify all desired variations. 

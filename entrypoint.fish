@@ -3,12 +3,12 @@
 function check_fish_version
     set version_string (fish --version)
     set test_collect (echo "1\n2" | string collect )
-    or begin; echo $version_string; error "Too old. This script requires ^3.1.0"; exit 1; end
+    or begin; echo $version_string; error "Too old. This script requires fish ^3.1.0"; exit 1; end
 end
 
 # Print on stderr to not pollute function return echo
 function error -a "message" -d "Git style error message"
-    echo "::error::\t$message" >& 2
+    echo "::error::$message" >& 2
 end
 
 function warning -a "message" -d "Git style warning message"
@@ -52,6 +52,8 @@ The variable GitHub access token called \$GH_ACCESS_TOKEN has to be set!
   --mail                Set the email address for git. Defaults to current user @users.noreply.github.com
   --commit-message      Set the commit-message for the push. Default is `Action Bot pushing.`
   --branch              Set which branch should be checkout out. Default is master
+  --dry-run             Script will run in empty folder and not touch target repo. Default is false
+  --delete-missing      Delete all files in the repo that are not present in source directory. Default is false
   --help                Display this help and exit
 "
 end
@@ -87,6 +89,10 @@ end
 function load_source -a "source"
     if test -z "$source"
         error "Source needs to be specified."
+        exit 1
+    end
+    if test ! -d "$source"
+        error "Source directory is does not exist or is no directory!"
         exit 1
     end
     echo "$source"
@@ -189,16 +195,20 @@ function delete_on_exit --on-event "fish_exit"
     end
 end
 
-function git_pull_to_dir -a "user" "email" "repo_url" "branch" "target_dir"
+function git_pull_to_dir -a "user" "email" "repo_url" "branch" "target_dir" "dry_run"
     if test \( -z "$user" -o -z "$email" -o -z "$repo_url" -o -z "$branch" -o -z "$target_dir" \)
         error "Missing arguments in git_pull_to_dir function"
         exit 1
     end
     pushd "$tmp_dir"; or begin; error "Couldn't switch to dir: $tmp_dir"; exit 1; end
-    git clone -b "$branch" "$repo_url" --depth=1 .
-    and git config user.email "$email"
-    and git config user.name "$user"
-    or begin; error "Error during pulling"; exit 1; end
+    if test -z "$dry_run"
+        git clone -b "$branch" "$repo_url" --depth=1 .
+        and git config user.email "$email"
+        and git config user.name "$user"
+        or begin; error "Error during pulling"; exit 1; end
+    else
+        inform "Using dry-run, no repo data will be pulled."
+    end
     popd; or begin; error "Couldn't pop from directory stack"; exit 1; end
 end
 
@@ -207,16 +217,15 @@ function git_push_dir -a "git_dir" "commit_message" "repo_url" "dry_run"
         error "Missing arguments in git_push_dir function!"
         exit 1
     end
-    echo "$repo_url"
     pushd "$git_dir"; or begin; error "Couldn't switch to dir: $git_dir"; exit 1; end
-    git branch -a
-    git add .
-    git commit -m "$commit_message"  # Allow git to reject commit if nothing has changed
     if test -z "$dry_run"
+        git branch -a
+        git add .
+        git commit -m "$commit_message"  # Allow git to reject commit if nothing has changed
         git push "$repo_url"
         or begin; error "Error during pushing to git!"; exit 1; end
     else
-        warning "dry-run option used! Won't push!" 
+        inform "dry-run option used! Won't push any data!" 
     end
     set sync_result (find . -type d -path '*/.git' -prune -o -name '*' -type f -print0 | sort -z | xargs -0)
     echo $sync_result
@@ -224,8 +233,11 @@ function git_push_dir -a "git_dir" "commit_message" "repo_url" "dry_run"
     popd; or begin; error "Couldn't pop from directory stack"; exit 1; end
 end
 
-function rsync_wrapper -a "exclude_option" "include_option" "source_dir" "target_dir"
+function rsync_wrapper -a "exclude_option" "include_option" "source_dir" "target_dir" "delete_missing"
     set rsync_cmd "rsync -av --prune-empty-dirs"
+    if test -n "$delete_missing"
+        set rsync_cmd "$rsync_cmd"" --delete"
+    end
     set rsync_cmd "$rsync_cmd""$exclude_option""$include_option"" $source_dir"" $target_dir"
     echo $rsync_cmd
     eval $rsync_cmd
@@ -238,7 +250,7 @@ check_fish_version
 # make sure to use LF ending and not CLRF, otherwise this doesn't work!
 set args "h-help=?" "s-source-dir=?" "i-include-patterns=?" "\
 e-exclude-patterns=?" "r-repository=?" "b-branch=?" "u-user=?" "\
-m-mail=?" "c-commit-message=?" "d-dry-run=?"
+m-mail=?" "c-commit-message=?" "d-dry-run=?" "D-delete-missing=?"
 argparse --name=copy_action $args -- $argv
 or help_exit
 
@@ -258,9 +270,9 @@ set branch (load_branch "$_flag_branch")
 set repo_url (parse_url "$repo" "$token")
 
 set tmp_dir (mktemp -d)
-git_pull_to_dir "$user" "$email" "$repo_url" "$branch" "$tmp_dir"
+git_pull_to_dir "$user" "$email" "$repo_url" "$branch" "$tmp_dir" "$_flag_dry_run"
 set exclude_option (build_exclude_option "$_flag_exclude_patterns")
 set include_option (build_include_option "$_flag_include_patterns")
 
-rsync_wrapper "$exclude_option" "$include_option" "$formatted_source" "$tmp_dir"
+rsync_wrapper "$exclude_option" "$include_option" "$formatted_source" "$tmp_dir" "$_flag_delete_missing"
 git_push_dir "$tmp_dir" "$commit_message" "$repo_url" "$_flag_dry_run"
