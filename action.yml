@@ -28,6 +28,9 @@ inputs:
     branch:
         description: "Set which branch should be checked out. It will never create a new branch! Default is master"
         required: false
+    delete-missing:
+        description: "Delete all files in repsitory that are not present in the source dir. Please be careful when using this option!"
+        required: false
 outputs:
     sync_result:
         description: "Folder structure of defined repo after syncing. Mainly used for testing."
@@ -45,6 +48,7 @@ runs:
         - --commit-message=${{ inputs.commit-message }}
         - --dry-run=${{ inputs.dry-run }}
         - --branch=${{ inputs.branch }}
+        - --delete-missing=${{ inputs.delete-missing }}
 branding:
     icon: "chevrons-up"
     color: "black"

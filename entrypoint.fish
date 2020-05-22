@@ -231,8 +231,11 @@ function git_push_dir -a "git_dir" "commit_message" "repo_url" "dry_run"
     popd; or begin; error "Couldn't pop from directory stack"; exit 1; end
 end
 
-function rsync_wrapper -a "exclude_option" "include_option" "source_dir" "target_dir"
+function rsync_wrapper -a "exclude_option" "include_option" "source_dir" "target_dir" "delete_missing"
     set rsync_cmd "rsync -av --prune-empty-dirs"
+    if -n "$delete_missing"
+        set rsync_cmd "$rsync_cmd"" --delete"
+    end
     set rsync_cmd "$rsync_cmd""$exclude_option""$include_option"" $source_dir"" $target_dir"
     echo $rsync_cmd
     eval $rsync_cmd
@@ -245,7 +248,7 @@ check_fish_version
 # make sure to use LF ending and not CLRF, otherwise this doesn't work!
 set args "h-help=?" "s-source-dir=?" "i-include-patterns=?" "\
 e-exclude-patterns=?" "r-repository=?" "b-branch=?" "u-user=?" "\
-m-mail=?" "c-commit-message=?" "d-dry-run=?"
+m-mail=?" "c-commit-message=?" "d-dry-run=?" "D-delete-missing=?"
 argparse --name=copy_action $args -- $argv
 or help_exit
 
@@ -269,5 +272,5 @@ git_pull_to_dir "$user" "$email" "$repo_url" "$branch" "$tmp_dir" "$_flag_dry_ru
 set exclude_option (build_exclude_option "$_flag_exclude_patterns")
 set include_option (build_include_option "$_flag_include_patterns")
 
-rsync_wrapper "$exclude_option" "$include_option" "$formatted_source" "$tmp_dir"
+rsync_wrapper "$exclude_option" "$include_option" "$formatted_source" "$tmp_dir" "$_flag_delete_missing"
 git_push_dir "$tmp_dir" "$commit_message" "$repo_url" "$_flag_dry_run"
