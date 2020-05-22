@@ -1,4 +1,4 @@
-name: tests
+name: Tests
 on:
   push:
     paths:
@@ -36,7 +36,6 @@ jobs:
         uses: ./
         with:
           source-directory: "./docs"
-          branch: "tests"
           dry-run: true
         id: default_test
       - name: Test output
@@ -64,7 +63,6 @@ jobs:
         uses: ./
         with:
           source-directory: "./docs"
-          branch: "tests"
           dry-run: true
           include-patterns: "*.md *.png"
         id: only_include
@@ -94,7 +92,6 @@ jobs:
         uses: ./
         with:
           source-directory: "./docs"
-          branch: "tests"
           dry-run: true
           include-patterns: "*.md *.png"
         id: case_sensitivity
@@ -128,7 +125,6 @@ jobs:
         uses: ./
         with:
           source-directory: "./docs"
-          branch: "tests"
           dry-run: true
           exclude-patterns: "*.md *.JPG"
         id: exclude_only
@@ -159,7 +155,6 @@ jobs:
         uses: ./
         with:
           source-directory: "./docs"
-          branch: "tests"
           dry-run: true
           include-patterns: "*.pdf"
           exclude-patterns: "*.tmp.pdf"
@@ -169,21 +164,3 @@ jobs:
           sol="./folder_a/nice.pdf ./hello.pdf"
           res="${{ steps.include_exclude.outputs.sync_result }}"
           [ "$sol" = "$res" ] || { echo "::error::Failed include_exclude test"; exit 1; }
-  test_actual_push:
-    name: Test push to own wiki on tmp branch
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout current version
-        uses: actions/checkout@v2
-      - name: Create tmp file
-        run: |
-          mkdir -p tmp/
-          rm -f tmp/*.action.tmp
-          mktemp tempfileXXXXXXXX --suffix=.action.tmp --tmpdir=./tmp/
-          ls tmp
-      - name: Push with local action
-        uses: ./
-        with:
-          source-directory: "./tmp/"
-          branch: "test_push_to_branch"
-          include-patterns: "*.action.tmp"
