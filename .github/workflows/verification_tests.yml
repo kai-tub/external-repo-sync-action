@@ -7,6 +7,9 @@ on:
       - "action.yml"
     branches: [ master ]
   pull_request:
+      - "**.fish"
+      - ".github/workflows/verification_tests.yml"
+      - "action.yml"
     branches: [ master ]
 
 env:
