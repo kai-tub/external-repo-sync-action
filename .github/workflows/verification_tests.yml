@@ -6,7 +6,6 @@ on:
       - ".github/workflows/verification_tests.yml"
       - "action.yml"
     branches: [ master ]
-  # TODO: Move PR section to own file with check
   pull_request:
     branches: [ master ]
 
@@ -17,9 +16,10 @@ jobs:
   test_full_pipeline_on_different_branch:
     name: Test push to own wiki on tmp branch
     runs-on: ubuntu-latest
-    # Problem, if I edit the PR from a user, the Secret still can't be accessed
-    # I need the information not of the actor and owner, but of the PR setter.
-    # if: github.actor == github.repository_owner
+    # Always run on master push to verifiy everything works and
+    # only run on PR if the Owner is issuing a PR, since he has
+    # access to the Secrets!
+    if: github.event_name == 'push' || github.event.pull_request.author_association == 'OWNER'
     if: github.event.pull_request.author_association == 'OWNER'
     steps:
       - name: Checkout current version
