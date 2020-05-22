@@ -17,13 +17,13 @@ jobs:
   test_full_pipeline_on_different_branch:
     name: Test push to own wiki on tmp branch
     runs-on: ubuntu-latest
+    # Problem, if I edit the PR from a user, the Secret still can't be accessed
+    # I need the information not of the actor and owner, but of the PR setter.
+    # if: github.actor == github.repository_owner
+    if: github.event.pull_request.author_association == "OWNER"
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
-      - name: Check if user can run test (otherwise exit workflow)
-        run: |
-          [ "$GITHUB_ACTOR" = "$GITHUB_OWNER" ] || { echo "::warning::Skipping pipeline test, as $GITHUB_ACTOR has no acces to it!"; exit 0; }
-        id: check_user
       - name: Create tmp file
         run: |
           mkdir -p tmp/
