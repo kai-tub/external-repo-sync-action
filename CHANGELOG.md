@@ -1,3 +1,15 @@
+# v1.1.0 (Fri May 22 2020)
+
+#### 🚀 Enhancement
+
+- Fix tests for forks + Added delete option [#12](https://github.com/kai-tub/external-repo-sync-action/pull/12) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
 # v1.0.4 (Thu May 21 2020)
 
 #### 🐛 Bug Fix
