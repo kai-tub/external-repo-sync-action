@@ -20,7 +20,6 @@ jobs:
     # only run on PR if the Owner is issuing a PR, since he has
     # access to the Secrets!
     if: github.event_name == 'push' || github.event.pull_request.author_association == 'OWNER'
-    if: github.event.pull_request.author_association == 'OWNER'
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
