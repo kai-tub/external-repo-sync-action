@@ -6,8 +6,8 @@ on:
       - ".github/workflows/verification_tests.yml"
       - "action.yml"
     branches: [ master ]
+  # TODO: Move PR section to own file with check
   pull_request:
-    # TODO only trigger if I modify it
     branches: [ master ]
 
 env:
@@ -20,6 +20,10 @@ jobs:
     steps:
       - name: Checkout current version
         uses: actions/checkout@v2
+      - name: Check if user can run test (otherwise exit workflow)
+        run: |
+          [ "$GITHUB_ACTOR" = "$GITHUB_OWNER" ] || { echo "::warning::Skipping pipeline test, as $GITHUB_ACTOR has no acces to it!"; exit 0; }
+        id: check_user
       - name: Create tmp file
         run: |
           mkdir -p tmp/
