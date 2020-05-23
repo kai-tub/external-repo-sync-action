@@ -1,6 +1,6 @@
 <h1>
   <p align="center">
-    External repository sync action
+    External repo/wiki sync action
   </p>
 </h1>
 <div align="center">
