@@ -1,3 +1,15 @@
+# v1.1.2 (Sat May 23 2020)
+
+#### 🐛 Bug Fix
+
+- Update action.yml [#14](https://github.com/kai-tub/external-repo-sync-action/pull/14) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
 # v1.1.1 (Sat May 23 2020)
 
 #### 🐛 Bug Fix
