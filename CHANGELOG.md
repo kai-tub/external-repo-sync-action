@@ -1,3 +1,15 @@
+# v1.1.1 (Sat May 23 2020)
+
+#### 🐛 Bug Fix
+
+- Updated Readme + Test auto-release [#13](https://github.com/kai-tub/external-repo-sync-action/pull/13) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
 # v1.1.0 (Fri May 22 2020)
 
 #### 🚀 Enhancement
