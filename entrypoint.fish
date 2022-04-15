@@ -270,6 +270,9 @@ set branch (load_branch "$_flag_branch")
 set repo_url (parse_url "$repo" "$token")
 
 set tmp_dir (mktemp -d)
+# Fix for the unsafe repo error: https://github.com/dertdog/external-repo-sync-action/issues/1
+echo "git config --global --add safe.directory $tmp_dir"
+git config --global --add safe.directory "$tmp_dir"
 git_pull_to_dir "$user" "$email" "$repo_url" "$branch" "$tmp_dir" "$_flag_dry_run"
 set exclude_option (build_exclude_option "$_flag_exclude_patterns")
 set include_option (build_include_option "$_flag_include_patterns")
