@@ -1,3 +1,19 @@
+# v1.1.3 (Tue Apr 19 2022)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Rob Wright ([@dertdog](https://github.com/dertdog)), for all your work!
+
+#### 🐛 Bug Fix
+
+- Fix unsafe repo in entrypoint.fish (#2) [#15](https://github.com/kai-tub/external-repo-sync-action/pull/15) ([@dertdog](https://github.com/dertdog))
+
+#### Authors: 1
+
+- Rob Wright ([@dertdog](https://github.com/dertdog))
+
+---
+
 # v1.1.2 (Sat May 23 2020)
 
 #### 🐛 Bug Fix
