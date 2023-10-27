@@ -27,7 +27,7 @@ function set_output -a "name" "output"
     end
     # Should be single line otherwise would need to esape chars for output
     # Tried https://github.community/t5/GitHub-Actions/set-output-Truncates-Multiline-Strings/td-p/37870
-    echo "::set-output name=$name""::$output"
+    echo "$name=$output" >> $GITHUB_OUTPUT
 end
 
 function mask -a "secret" -d "Git style of hiding output"

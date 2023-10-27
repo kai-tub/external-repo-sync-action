@@ -32,7 +32,7 @@ jobs:
           mkdir -p tmp/
           out=$(mktemp tempfileXXXXXXXX --suffix=.action.tmp --tmpdir=./tmp/)
           out=$(basename "$out")
-          echo "::set-output name=tempfile::$out"
+          echo "tempfile=$out" >> $GITHUB_OUTPUT
         id: tempfile
       - name: Push with local action
         uses: ./
