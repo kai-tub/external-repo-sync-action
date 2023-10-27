@@ -26,7 +26,7 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.author_association == 'OWNER'
     steps:
       - name: Checkout current version
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Create tmp file
         run: |
           mkdir -p tmp/
