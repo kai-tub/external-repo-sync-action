@@ -26,13 +26,13 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.author_association == 'OWNER'
     steps:
       - name: Checkout current version
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Create tmp file
         run: |
           mkdir -p tmp/
           out=$(mktemp tempfileXXXXXXXX --suffix=.action.tmp --tmpdir=./tmp/)
           out=$(basename "$out")
-          echo "::set-output name=tempfile::$out"
+          echo "tempfile=$out" >> $GITHUB_OUTPUT
         id: tempfile
       - name: Push with local action
         uses: ./

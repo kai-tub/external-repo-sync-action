@@ -165,7 +165,7 @@ folder to the wiki of the current repository:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout current version
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Create files to sync
           run: |
             mkdir docs/
