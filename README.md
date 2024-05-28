@@ -1,6 +1,6 @@
 <h1>
   <p align="center">
-    External repo/wiki sync action
+    UNMAINTAINED: External repo/wiki sync action
   </p>
 </h1>
 <div align="center">
@@ -38,7 +38,19 @@
 - [Contributing](#contributing)
 - [Contact](#contact)
 
-# When to use this action
+## STATUS: UNMAINTAINED
+
+As I am no longer using the project, I have changed the status to `UNMAINTAINED` and archived the repository.
+Feel free to fork the project!
+
+Currently, the majority of the maintainence work would be updating GitHub action dependencies and moving the tutorial
+and the internal CI pipeline to use the new [fine-grained personal access tokens](https://github.blog/2022-10-18-introducing-fine-grained-personal-access-tokens-for-github/).
+The [fish shell](https://github.com/fish-shell/fish-shell) code is a thin wrapper around `git` and `rsync`.
+It should be fairly easy to update the code or to move it to an easier scripting language, such as [nushell](https://www.nushell.sh/).
+
+---
+
+## When to use this action
 
 You can use this action in two ways:
 
